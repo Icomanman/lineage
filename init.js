@@ -21,7 +21,6 @@ function main() {
     app.use('/js', express.static(`${__dirname}/dist/js`));
     app.use('/css', express.static(`${__dirname}/dist/css`));
     app.use('/login', express.static(`${__dirname}/views/login.html`));
-    // app.use('/login', express.static(path.join(__dirname, 'views')));
 
     let start = 'xdg-open';
     let kill_comm = 'pkill -f chrome';
