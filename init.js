@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const child_process = require('child_process');
+const path = require('path');
 
 // const sqlite3 = require('sqlite3').verbose();
 // const db = new sqlite3.Database(':memory:');
@@ -16,14 +17,16 @@ function main() {
     });
 
     // Serve Directories:
-    app.use("/dist", express.static(`${__dirname}/dist`));
-    // app.use("/css", express.static(`${__dirname}/dist/css`));
-    app.use("/", express.static(`${__dirname}/dist`));
+    app.use('/', express.static(`${__dirname}/dist`));
+    app.use('/js', express.static(`${__dirname}/dist/js`));
+    app.use('/css', express.static(`${__dirname}/dist/css`));
+    app.use('/login', express.static(`${__dirname}/views/login.html`));
+    // app.use('/login', express.static(path.join(__dirname, 'views')));
 
-    let start = "xdg-open";
-    let kill_comm = "pkill -f chrome";
-    if (process.platform == "win32") {
-        start = "start";
+    let start = 'xdg-open';
+    let kill_comm = 'pkill -f chrome';
+    if (process.platform == 'win32') {
+        start = 'start';
         kill_comm = "'TASKKILL /F /IM chrome.exe /T'";
     };
 
