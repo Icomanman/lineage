@@ -1,4 +1,7 @@
 
 /node_modules
-/dist/js
-/dist/css
+
+/dist/js/semantic.min.js
+/dist/js/jquery.min.js
+/dist/css/semantic.min.css
+/dist/css/fonts

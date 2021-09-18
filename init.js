@@ -23,6 +23,7 @@ function main() {
     app.use('/', express.static(`${__dirname}/dist`));
     app.use('/js', express.static(`${__dirname}/dist/js`));
     app.use('/css', express.static(`${__dirname}/dist/css`));
+    app.use('img', express.static(`${__dirname}/dist/img`));
     // app.use('/login', express.static(`${__dirname}/views/login.html`));
 
     app.get('/login', (req, res) => {
@@ -37,7 +38,7 @@ function main() {
     };
     // Kill browser upon node exit
     // process.on('exit', () => child_process.exec(kill_comm));
-    child_process.exec(`${start} ${url}/`);
+    // child_process.exec(`${start} ${url}/`);
 }
 
 main();

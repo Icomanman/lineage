@@ -3,7 +3,7 @@
 
 <head>
    <title>ClanGene - Clan Lineage</title>
-   <link rel="icon" href="" type="image/icon">
+   <link rel="icon" href="/img/family-tree-icon.png" type="image/icon">
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
    <meta name="description" content="">
@@ -20,37 +20,71 @@
 </head>
 
 <body>
-   <nav class="ui big menu">
+   <nav class="ui menu">
       <a href="/">
          <div class="header item">
-            Clan Genealogy
+            <h2 class="ui header">Clan Genealogy</h2>
          </div>
       </a>
       <a class="item">
-         About Us
-      </a>
-      <a class="item">
-         Jobs
-      </a>
-      <a class="item">
-         Locations
+         About
       </a>
 
       <section class="right menu">
-         <a class="item">Register</a>
          <a class="item" href="/login">Login</a>
       </section>
    </nav>
 
-   <section class="ui sidebar">
-      <div class="ui segment">Profile</div>
-      <div class="vertical menu">
-         Settings
-      </div>
+   <main class="ui grid container">
 
-   </section>
+      <section class="six wide column">
+         <div class="ui segment">
+            <div class="ui centered grid">
 
-   <main class="pusher">
+               <div class="row">
+                  <h3 class="ui header aligned center">Register</h3>
+               </div>
+
+               <div class="row">
+                  <form class="ui form" action="/register">
+
+                     <div class="ui message">
+                        <div class="header">We had some issues</div>
+                        <ul class="list">
+                           <li>Please enter your first name</li>
+                           <li>Please enter your last name</li>
+                        </ul>
+                     </div>
+
+                     <div class="sixteen wide field">
+                        <label>First Name</label>
+                        <input type="text" name="first-name" placeholder="First Name">
+                     </div>
+                     <div class="field">
+                        <label>Last Name</label>
+                        <input type="text" name="last-name" placeholder="Last Name">
+                     </div>
+                     <div class="field">
+                        <div class="ui checkbox">
+                           <input type="checkbox" tabindex="0" class="hidden">
+                           <label>I agree to the Terms and Conditions</label>
+                        </div>
+                     </div>
+                     <button class="ui button" type="submit">Submit</button>
+                  </form>
+               </div>
+
+            </div>
+         </div>
+      </section>
+
+      <section class="ten wide column">
+         <div class="ui two column centered grid">
+            <div class="column">
+               <img class="ui medium image cl-img" src="/img/family-tree-even.svg" alt="Family Tree">
+            </div>
+         </div>
+      </section>
 
    </main>
 
