@@ -30,6 +30,8 @@ function main() {
         res.render('tmp', { content: 'login.html' });
     });
 
+    app.post();
+
     let start = 'xdg-open';
     let kill_comm = 'pkill -f chrome';
     if (process.platform == 'win32') {
