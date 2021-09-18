@@ -1,8 +1,7 @@
 const express = require('express');
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
 const child_process = require('child_process');
-const path = require('path');
+
+const routes = require('./src/routes');
 
 // const sqlite3 = require('sqlite3').verbose();
 // const db = new sqlite3.Database(':memory:');
@@ -12,7 +11,7 @@ function main() {
     const port = 8080;
     const url = `http://localhost:${port}`;
     app.set('view engine', 'ejs');
-    app.set('/views', path.join(__dirname, '/views'));
+    app.set('/views', `${__dirname}/views`);
 
     app.listen(port, () => {
         console.log(`Server running on port ${port}.`);
@@ -20,17 +19,15 @@ function main() {
     });
 
     // Serve Directories:
-    app.use('/', express.static(`${__dirname}/dist`));
+    app.use('/', routes());
+    // app.use('/', express.static(`${__dirname}/dist`));
     app.use('/js', express.static(`${__dirname}/dist/js`));
     app.use('/css', express.static(`${__dirname}/dist/css`));
-    app.use('img', express.static(`${__dirname}/dist/img`));
+    app.use('/img', express.static(`${__dirname}/dist/img`));
     // app.use('/login', express.static(`${__dirname}/views/login.html`));
-
-    app.get('/login', (req, res) => {
-        res.render('tmp', { content: 'login.html' });
-    });
-
-    app.post();
+    // app.get('/login', (req, res) => {
+    //     res.render('tmp', { content: 'login.html' });
+    // });
 
     let start = 'xdg-open';
     let kill_comm = 'pkill -f chrome';
