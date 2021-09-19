@@ -3,9 +3,6 @@ const child_process = require('child_process');
 
 const routes = require('./src/routes');
 
-// const sqlite3 = require('sqlite3').verbose();
-// const db = new sqlite3.Database(':memory:');
-
 function main() {
     const app = express();
     const port = 8080;

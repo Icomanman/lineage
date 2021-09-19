@@ -4,34 +4,15 @@ const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
-const sqlite3 = require('sqlite3').verbose();
-let db_file = `${global_path}/db/main.db`;
-
-/**
- * Initiates database, returns the database object
- * @param {string} file database file name with absolute path
- * @param {string} mode whether readonly (default), readwrite or create 
- */
-function initDB(file, mode = 'readonly') {
-    const open_mode = {
-        create: 'OPEN_CREATE',
-        readonly: 'OPEN_READONLY',
-        readwrite: 'OPEN_READWRITE'
-    };
-
-    const db = new sqlite3.Database('', open_mode[mode], (err) => {
-        if (err) console.log('Failed to initialise database.');
-        else console.log(`Database initialised: ${file}`);
-    });
-
-    console.log(db.run('SELECT * FROM users'));
-    return db;
-};
-
 const login = require('./login.js');
 const register = require('./register.js');
+const { loginUser, registerUser } = require(`${global_path}/src/utils.js`);
 
+/* Instantiate middleware in 'router'. Note that 'body-parser' is depracated: 19 Sep 2021
+The Request object body can now be parsed directly via express via the below: */
 const router = express.Router();
+router.use(express.urlencoded({ extended: true }));
+router.use(express.json());
 
 module.exports = () => {
     // homepage (index) as static html:
@@ -42,6 +23,9 @@ module.exports = () => {
             res.render('tmp', { content: 'login.html' });
             // res.end();
         } else {
+            console.log('> Incoming /login POST request...');
+            // pass and validate user login input:
+            loginUser(req.body, db)
             res.end();
         }
     });
@@ -50,10 +34,10 @@ module.exports = () => {
         if (req.method === 'GET') {
             res.redirect('/');
         } else {
-            const db = initDB(db_file);
-            console.log('POST request.');
-            console.log(db);
-            db.close();
+            console.log('> Incoming /register POST request...');
+            // pass and validate user registration input:
+            const status_code = registerUser(req.body);
+            res.status(status_code);
             res.end();
         }
     });
