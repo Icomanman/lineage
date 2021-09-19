@@ -25,8 +25,8 @@ module.exports = () => {
         } else {
             console.log('> Incoming /login POST request...');
             // pass and validate user login input:
-            loginUser(req.body, db)
-            res.end();
+            loginUser(req.body)
+            res.render('tmp', { content: 'home.html' });
         }
     });
     // register:
@@ -38,7 +38,8 @@ module.exports = () => {
             // pass and validate user registration input:
             const status_code = registerUser(req.body);
             res.status(status_code);
-            res.end();
+            // res.end();
+            res.redirect('/login');
         }
     });
     return router;
