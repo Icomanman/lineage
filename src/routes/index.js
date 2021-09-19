@@ -17,6 +17,9 @@ router.use(express.json());
 module.exports = () => {
     // homepage (index) as static html:
     router.get('/', express.static(`${global_path}/dist`));
+    router.get('/home', (req, res) => {
+        res.render('tmp', { content: 'home.html' });
+    });
     // login:
     router.use('/login', (req, res) => {
         if (req.method === 'GET') {
@@ -26,7 +29,7 @@ module.exports = () => {
             console.log('> Incoming /login POST request...');
             // pass and validate user login input:
             loginUser(req.body)
-            res.render('tmp', { content: 'home.html' });
+            res.redirect('/home');
         }
     });
     // register:
@@ -39,7 +42,9 @@ module.exports = () => {
             const status_code = registerUser(req.body);
             res.status(status_code);
             // res.end();
-            res.redirect('/login');
+            setTimeout(() => {
+                res.redirect('/login');
+            }, 2000);
         }
     });
     return router;
