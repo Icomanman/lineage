@@ -21,18 +21,40 @@ function initDB(file, db_mode = 'read') {
     return db;
 };
 
-const db_file = `${global_path}/db/main.db`;
-
-const loginUser = input_obj => {
-    const db = initDB(db_file, 'read');
-    console.log(input_obj);
+/**
+ * validations make use 'express-validator' via the 'check' function
+ * @param {string} request set to 'login' by default 
+ * @returns check functions run via middleware array
+ */
+function validations(request = 'login') {
+    const { check } = require('express-validator');
+    const login = [
+        check('email').trim().isEmail().normalizeEmail().withMessage('Invalid email address.'),
+        check('peewee').trim().isLength({ min: 8 }).escape().withMessage('Password should be at least 8 characters'),
+    ];
+    const registration = [
+        check('first').trim().isLength({ min: 2 }).isAlpha().escape().withMessage('First Name should be letters only'),
+        check('last').trim().isLength({ min: 2 }).escape().withMessage('Last Name should be letters only'),
+        check('email').trim().isEmail().normalizeEmail().withMessage('Invalid email address.'),
+        check('peewee').trim().isLength({ min: 8 }).escape().withMessage('Password should be at least 8 characters'),
+    ];
+    return request === 'login' ? login : registration;
 };
 
-const registerUser = input_obj => {
+const db_file = `${global_path}/db/main.db`;
+
+const loginUser = req_body => {
+    // const db = initDB(db_file, 'read');
+    console.log(req_body);
+    return 200;
+};
+
+const registerUser = req_body => {
     let status_code = 200;
 
-    const { first, last, email, peewee } = input_obj;
-    console.log(input_obj);
+    const { first, last, email, peewee } = req_body;
+    console.log(req_body);
+
     // const db = initDB(db_file, 'write');
     // db.run('INSERT INTO users () VALUES ()', []);
     // db.close();
@@ -40,5 +62,5 @@ const registerUser = input_obj => {
 };
 
 module.exports = {
-    loginUser, registerUser
+    loginUser, registerUser, validations
 }

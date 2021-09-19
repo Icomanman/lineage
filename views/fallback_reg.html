@@ -1,0 +1,86 @@
+<main class="ui grid container" style="margin-top: 2%;">
+
+   <section class="six wide column">
+      <div class="ui segment">
+         <div class="ui centered grid">
+            <div class="sixteen wide column">
+               <% if (misc){ %>
+                  <div class="row cl-row">
+                     <div class="ui error message">
+                        <ul class="list">
+                           <% misc.forEach(err=>{ %>
+                              <li>
+                                 <%= err.msg %>
+                              </li>
+                              <% }) %>
+                        </ul>
+                     </div>
+                  </div>
+                  <% }%>
+                     <div class="row cl-row">
+                        <h3 class="ui header aligned center">Register</h3>
+                     </div>
+
+                     <div class="row cl-row">
+                        <form class="ui form" action="/register" method="POST">
+                           <div class="ui error message"></div>
+                           <div class="ui success message">
+                              <div class="header">Congratulations!</div>
+                              <p>You're all signed up and registered.</p>
+                           </div>
+
+                           <div class="two fields">
+                              <div class="field">
+                                 <label>First Name</label>
+                                 <input type="text" name="first" placeholder="First Name">
+                              </div>
+                              <div class="field">
+                                 <label>Last Name</label>
+                                 <input type="text" name="last" placeholder="Last Name">
+                              </div>
+                           </div>
+
+                           <div class="field">
+                              <label>Email</label>
+                              <input type="email" name="email" placeholder="Your Email">
+                           </div>
+
+                           <div class="field">
+                              <label>Password</label>
+                              <input type="password" name="peewee" placeholder="Your Password">
+                           </div>
+
+                           <!-- <div class="field">
+                        <div class="ui checkbox">
+                           <input type="checkbox" tabindex="0" class="hidden">
+                           <label>I agree to the Terms and Conditions</label>
+                        </div>
+                     </div> -->
+                           <button class="ui button" type="submit">Submit</button>
+                        </form>
+                     </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <section class="ten wide column">
+      <div class="ui two column centered grid">
+         <div class="column">
+            <div class="row cl-row">
+               <h2 class="ui header aligned center">
+                  Know Your History
+                  <div class="sub header">
+                     <div class="divider hidden" style="color: #fff;">-</div>
+                     Sign up and connect with the generations of your family.
+                  </div>
+               </h2>
+            </div>
+            <div class="row cl-row">
+               <img class="ui centered medium image cl-img" src="/img/family-tree-even.svg" alt="Family Tree">
+            </div>
+         </div>
+      </div>
+   </section>
+
+</main>
