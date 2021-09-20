@@ -16,7 +16,10 @@ document.onreadystatechange = () => {
                 },
                 password: {
                     identifier: 'peewee',
-                    rules: [{ type: 'empty', prompt: 'Please enter your password' }]
+                    rules: [
+                        { type: 'empty', prompt: 'Please enter your password' },
+                        { type: 'minLength[8]', prompt: 'Your password should be at least 8 characters' }
+                    ]
                 }
             };
             const reg_fields = {
@@ -35,6 +38,14 @@ document.onreadystatechange = () => {
                 password: {
                     identifier: 'peewee',
                     rules: [{ type: 'empty', prompt: 'Please enter your password' }]
+                },
+                date: {
+                    identifier: 'day',
+                    rules: [{ type: 'empty', prompt: 'Please enter your date of birth' }]
+                },
+                gender: {
+                    identifier: 'gender',
+                    rules: [{ type: 'empty', prompt: 'Please enter your gender' }]
                 }
             };
             const fields = route === 'login' ? login_fields : reg_fields;

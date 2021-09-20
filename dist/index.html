@@ -53,25 +53,44 @@
 
                         <div class="two fields">
                            <div class="field">
-                              <label>First Name</label>
+                              <label for="first">First Name</label>
                               <input type="text" name="first" placeholder="First Name">
                            </div>
                            <div class="field">
-                              <label>Last Name</label>
+                              <label for="last">Last Name</label>
                               <input type="text" name="last" placeholder="Last Name">
                            </div>
                         </div>
 
                         <div class="field">
-                           <label>Email</label>
+                           <label for="email">Email</label>
                            <input type="email" name="email" placeholder="Your Email">
                         </div>
 
                         <div class="field">
-                           <label>Password</label>
+                           <label for="peewee">Password</label>
                            <input type="password" name="peewee" placeholder="Your Password">
                         </div>
 
+                        <div class="equal width fields">
+                           <div class="field">
+                              <label for="day">Date of Birth</label>
+                              <input type="date" name="day">
+                           </div>
+                           <div class="field">
+                              <label>Gender</label>
+                              <div class="ui selection dropdown" id="gender-dropdown">
+                                 <input type="hidden" name="gender">
+                                 <i class="dropdown icon"></i>
+                                 <div class="default text">Gender</div>
+                                 <div class="menu">
+                                    <div class="item" data-value="0">Male</div>
+                                    <div class="item" data-value="1">Female</div>
+                                    <div class="item" data-value="2">Other</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
                         <!-- <div class="field">
                            <div class="ui checkbox">
                               <input type="checkbox" tabindex="0" class="hidden">
@@ -129,6 +148,9 @@
          </div>
       </div>
    </footer>
+   <script>
+      jQuery('#gender-dropdown').dropdown();
+   </script>
    <script src="/js/main.js" type="text/javascript"></script>
 </body>
 

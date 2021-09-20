@@ -53,7 +53,7 @@ module.exports = () => {
                 const status_code = registerUser(req.body);
                 res.status(status_code);
                 setTimeout(() => {
-                    res.redirect('/login');
+                    res.redirect('/home');
                 }, 2000);
             } else {
                 console.log(err_obj.array());
