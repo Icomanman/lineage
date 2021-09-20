@@ -3,7 +3,7 @@ jQuery(document).bind('contextmenu', function (e) {
     return false;
 });
 
-treeData = [{
+let treeData = [{
     "name": "Niclas Superlongsurname",
     "class": "man",
     "textClass": "emphasis",
@@ -56,8 +56,8 @@ treeData = [{
 dTree.init(treeData, {
     target: "#graph",
     debug: true,
-    height: 800,
-    width: 1200,
+    height: 480,
+    width: 720,
     callbacks: {
         nodeClick: function (name, extra) {
             console.log(name);

@@ -1,16 +1,71 @@
-<section class="ui sidebar">
-   <div class="ui segment">Profile</div>
-   <div class="vertical menu">
-      Settings
-   </div>
-
+<section class="ui sidebar inverted vertical menu">
+   <div class="item">one</div>
+   <div class="item">one</div>
+   <div class="item">one</div>
+   <div class="item">one</div>
 </section>
 
 <main class="pusher">
    <div class="ui centered grid cl-row">
-      <h3 class="ui header">You are now logged in</h3>
+      <div class="row">
+         <div class="four wide column">
+            <div class="ui column centered grid">
+               <div class="row">
+                  <h2 class="ui header">Profile</h2>
+               </div>
+               <div id="profile-content" class="row">
+                  <div class="ui card">
+                     <div id="profile-img" class="image">
+                        <img src="/img/profile-temp.jpg">
+                     </div>
+                     <div class="content">
+                        <a href="/home">
+                           <div id="family" class="ui header">
+                              <i class="users icon"></i>
+                              Kardashian
+                           </div>
+                        </a>
+                     </div>
+                     <div class="content">
+                        <div id="user-name" class="header">
+                           Anna
+                        </div>
+                        <div class="meta">
+                           <span id="head-indicator">
+                              <i class="chess queen icon"></i>
+                              sota
+                           </span>
+                           |
+                           <span class="date">
+                              <i class="female icon"></i>
+                              Born 1994
+                           </span>
+                        </div>
+                        <div class="description">
+                           Connected to 9 <a id="connections" href="">
+                              people
+                           </a>
+                        </div>
+                     </div>
+                     <div id="families" class="extra content">
+                        <i class="users icon"></i>
+                        <a href="/home">
+                           Kardashian
+                        </a>,
+                        <a href="/home">
+                           Vidovic
+                        </a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="twelve wide column" id="graph"></div>
+      </div>
    </div>
-   <div class="container" id="graph"></div>
 </main>
 
+<script>
+   // jQuery('.ui.sidebar').sidebar('toggle');
+</script>
 <script src="/dist/app.js"></script>

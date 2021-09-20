@@ -4,6 +4,7 @@ const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const { validationResult } = require('express-validator');
+const { json } = require('express');
 
 const { loginUser, registerUser, validations } = require(`${global_path}/src/utils.js`);
 
@@ -18,6 +19,9 @@ module.exports = () => {
     router.get('/', express.static(`${global_path}/dist`));
     router.get('/home', (req, res) => {
         res.render('tmp', { content: 'home.html', msg_arr: null, is_home: true });
+    });
+    router.post('/home', (req, res) => {
+        res.send({});
     });
 
     // login:

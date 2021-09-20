@@ -1,6 +1,7 @@
 
 const global_path = process.cwd();
 const pHash = require('password-hash');
+const db_file = `${global_path}/db/main.db`;
 
 /**
  * Initiates database, returns the database object
@@ -43,8 +44,6 @@ function validations(request = 'login') {
     return request === 'login' ? login : registration;
 };
 
-const db_file = `${global_path}/db/main.db`;
-
 const loginUser = req_body => {
     // const db = initDB(db_file, 'read');
     console.log(req_body);
@@ -61,6 +60,14 @@ const registerUser = req_body => {
     // db.run('INSERT INTO users () VALUES ()', []);
     // db.close();
     return status_code;
+};
+
+const pushData = () => {
+
+};
+
+const pullData = () => {
+
 };
 
 module.exports = {
