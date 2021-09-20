@@ -29,14 +29,16 @@ function initDB(file, db_mode = 'read') {
 function validations(request = 'login') {
     const { check } = require('express-validator');
     const login = [
-        check('email').trim().isEmail().normalizeEmail().withMessage('Invalid email address.'),
+        check('email').trim().isEmail().normalizeEmail().withMessage('Invalid email address'),
         check('peewee').trim().isLength({ min: 8 }).escape().withMessage('Password should be at least 8 characters'),
     ];
     const registration = [
         check('first').trim().isLength({ min: 2 }).isAlpha().escape().withMessage('First Name should be letters only'),
-        check('last').trim().isLength({ min: 2 }).escape().withMessage('Last Name should be letters only'),
-        check('email').trim().isEmail().normalizeEmail().withMessage('Invalid email address.'),
+        check('last').trim().isLength({ min: 2 }).isAlpha().escape().withMessage('Last Name should be letters only'),
+        check('email').trim().isEmail().normalizeEmail().withMessage('Invalid email address'),
         check('peewee').trim().isLength({ min: 8 }).escape().withMessage('Password should be at least 8 characters'),
+        check('day').trim().isEmpty().escape().withMessage('Date cannot be empty'),
+        check('gender').trim().isEmpty().escape().withMessage('Gender cannot be empty'),
     ];
     return request === 'login' ? login : registration;
 };
