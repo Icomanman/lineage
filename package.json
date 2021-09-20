@@ -25,6 +25,7 @@
   "homepage": "https://github.com/Icomanman/lineage#readme",
   "dependencies": {
     "cookie-parser": "^1.4.5",
+    "d3-dtree": "^2.4.1",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-session": "^1.17.2",

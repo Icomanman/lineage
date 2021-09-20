@@ -18,6 +18,7 @@ function main() {
     // Serve Directories:
     app.use('/', routes());
     // app.use('/', express.static(`${__dirname}/dist`));
+    app.use('/dist', express.static(`${__dirname}/src`));
     app.use('/js', express.static(`${__dirname}/dist/js`));
     app.use('/css', express.static(`${__dirname}/dist/css`));
     app.use('/img', express.static(`${__dirname}/dist/img`));
