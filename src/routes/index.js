@@ -32,9 +32,12 @@ module.exports = () => {
         try {
             const err_obj = validationResult(req);
             if (err_obj.isEmpty()) {
-                const status_code = loginUser(req.body);
+                const { status_code, dat } = loginUser(req.body);
                 res.status(status_code);
                 if (status_code == 200) res.redirect('/home');
+                else {
+                    res.render('tmp', { content: 'login.html', msg_arr: [dat.msg] });
+                }
             } else {
                 console.log(err_obj.array());
                 res.render('tmp', { content: 'login.html', msg_arr: err_obj.array() });
@@ -53,13 +56,19 @@ module.exports = () => {
         try {
             const err_obj = validationResult(req);
             if (err_obj.isEmpty()) {
-                const status_code = registerUser(req.body);
+                const { status_code, dat } = registerUser(req.body);
                 res.status(status_code);
-                setTimeout(() => {
-                    res.redirect('/home');
-                }, 2000);
+                if (status_code == 200) {
+                    setTimeout(() => {
+                        res.redirect('/home');
+                    }, 3000);
+                } else {
+                    // input issues related to the database:
+                    res.render('tmp', { content: 'fallback_reg.html', msg_arr: null, misc: [{ msg: dat.msg }] });
+                }
             } else {
                 console.log(err_obj.array());
+                // validation messages:
                 res.render('tmp', { content: 'fallback_reg.html', msg_arr: null, misc: err_obj.array() });
             }
         } catch (err) {

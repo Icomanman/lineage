@@ -24,14 +24,14 @@
   },
   "homepage": "https://github.com/Icomanman/lineage#readme",
   "dependencies": {
+    "better-sqlite3": "^7.4.3",
     "cookie-parser": "^1.4.5",
     "d3-dtree": "^2.4.1",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "express-validator": "^6.12.1",
-    "password-hash": "^1.2.2",
-    "sqlite3": "^4.2.0"
+    "password-hash": "^1.2.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"

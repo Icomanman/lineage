@@ -53,7 +53,12 @@ document.onreadystatechange = () => {
                 on: 'blur',
                 fields,
                 onFailure: () => false,
-                onSuccess: () => true
+                onSuccess: () => {
+                    setTimeout(() => {
+                        jQuery('.success.message').transition('fade right');
+                    }, 500);
+                    return true;
+                }
             });
             // jQuery('form').form('clear');
         };
