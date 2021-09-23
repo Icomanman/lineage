@@ -26,17 +26,23 @@
 </head>
 
 <body>
-   <nav class="ui big menu">
+   <nav class="ui big menu" style="margin: 0 !important;">
       <a href="/">
          <div class="header item">
             <h2 class="ui header">Clan Genealogy</h2>
          </div>
       </a>
-      <a class="item" href="/">About</a>
-
-      <section class="right menu">
-         <a class="item" href="/login">Login</a>
-      </section>
+      <% if (locals.is_home){ %>
+         <section class="right menu">
+            <a class="item" id="settings">Settings</a>
+            <a class="item" href="/login">Logout</a>
+         </section>
+         <% } else { %>
+            <a class="item" href="/">About</a>
+            <section class="right menu">
+               <a class="item" href="/login">Login</a>
+            </section>
+            <% } %>
    </nav>
 
    <% if (msg_arr) { %>

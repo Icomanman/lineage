@@ -18,6 +18,7 @@ module.exports = () => {
     // homepage (index) as static html:
     router.get('/', express.static(`${global_path}/dist`));
     router.get('/home', (req, res) => {
+        // verify if the user is logged in or not:
         res.render('tmp', { content: 'home.html', msg_arr: null, is_home: true });
     });
     router.post('/home', (req, res) => {

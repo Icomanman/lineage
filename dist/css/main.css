@@ -2,12 +2,16 @@
    padding-top: 10%;
 }
 
+.cl-no-pad {
+   padding: 0 !important;
+}
+
 .cl-row {
    margin-top: 2%;
    margin-bottom: 2%;
 }
 
 #profile-content {
-   min-width: 90%;
-   padding-left: 25px !important;
+   min-width: 75%;
+   text-align: center;
 }

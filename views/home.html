@@ -6,66 +6,63 @@
 </section>
 
 <main class="pusher">
-   <div class="ui centered grid cl-row">
+   <div class="ui centered grid cl-row" style="margin-top: 0 !important;">
       <div class="row">
-         <div class="four wide column">
-            <div class="ui column centered grid">
-               <div class="row">
-                  <h2 class="ui header">Profile</h2>
-               </div>
-               <div id="profile-content" class="row">
-                  <div class="ui card">
-                     <div id="profile-img" class="image">
-                        <img src="/img/profile-temp.jpg">
-                     </div>
-                     <div class="content">
-                        <a href="/home">
-                           <div id="family" class="ui header">
-                              <i class="users icon"></i>
-                              Kardashian
-                           </div>
-                        </a>
-                     </div>
-                     <div class="content">
-                        <div id="user-name" class="header">
-                           Anna
-                        </div>
-                        <div class="meta">
-                           <span id="head-indicator">
-                              <i class="chess queen icon"></i>
-                              sota
-                           </span>
-                           |
-                           <span class="date">
-                              <i class="female icon"></i>
-                              Born 1994
-                           </span>
-                        </div>
-                        <div class="description">
-                           Connected to 9 <a id="connections" href="">
-                              people
-                           </a>
-                        </div>
-                     </div>
-                     <div id="families" class="extra content">
-                        <i class="users icon"></i>
-                        <a href="/home">
+         <div class="four wide column cl-no-pad">
+            <div id="profile-content" class="row">
+               <div class="ui centered raised card">
+                  <div id="profile-img" class="image">
+                     <img src="/img/profile-temp.jpg">
+                  </div>
+                  <div class="content">
+                     <a href="/home">
+                        <div id="family" class="ui header">
+                           <i class="users icon"></i>
                            Kardashian
-                        </a>,
-                        <a href="/home">
-                           Vidovic
+                        </div>
+                     </a>
+                  </div>
+                  <div class="content">
+                     <div id="user-name" class="header">
+                        Anna
+                     </div>
+                     <div class="meta">
+                        <span id="head-indicator">
+                           <i class="chess queen icon"></i>
+                           sota
+                        </span>
+                        |
+                        <span class="date">
+                           <i class="female icon"></i>
+                           Born 1994
+                        </span>
+                     </div>
+                     <div class="description">
+                        Connected to 9 <a id="connections" href="">
+                           people
                         </a>
                      </div>
+                  </div>
+                  <div id="families" class="extra content">
+                     <i class="users icon"></i>
+                     <a href="/home">
+                        Kardashian
+                     </a>,
+                     <a href="/home">
+                        Vidovic
+                     </a>
                   </div>
                </div>
             </div>
          </div>
-         <div class="twelve wide column" id="graph"></div>
+         <div class="twelve wide column cl-no-pad" id="graph"></div>
       </div>
    </div>
 </main>
 
 <script>
-   // jQuery('.ui.sidebar').sidebar('toggle');
+   jQuery('#settings').bind('click', () => {
+      jQuery('.ui.sidebar').sidebar('toggle');
+   })
 </script>
 <script src="/dist/app.js"></script>
