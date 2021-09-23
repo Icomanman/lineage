@@ -42,13 +42,13 @@
    <% if (msg_arr) { %>
       <div class="ui centered grid" style="margin-top: 5%;">
          <div class="ui error message">
-            <ul class="list">
+            <div class="ui list">
                <% msg_arr.forEach(err=>{ %>
-                  <li>
+                  <div class="item">
                      <%= err.msg %>
-                  </li>
+                  </div>
                   <% }) %>
-            </ul>
+            </div>
          </div>
       </div>
       <% } %>

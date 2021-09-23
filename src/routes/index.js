@@ -36,7 +36,7 @@ module.exports = () => {
                 res.status(status_code);
                 if (status_code == 200) res.redirect('/home');
                 else {
-                    res.render('tmp', { content: 'login.html', msg_arr: [dat.msg] });
+                    res.render('tmp', { content: 'login.html', msg_arr: [{ msg: dat.msg }] });
                 }
             } else {
                 console.log(err_obj.array());

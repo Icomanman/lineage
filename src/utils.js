@@ -47,34 +47,26 @@ function validations(request = 'login') {
     return request === 'login' ? login : registration;
 };
 
-function loginChain(err_obj) {
-    console.log(obj);
-}
-
 const loginUser = req_body => {
     let status_code = 400;
-
-    console.table(req_body);
-    req_body['peewee'] = pHash.generate(req_body['peewee']);
-    const arg_v = [];
-    for (let arg in req_body) {
-        arg_v.push(req_body[arg]);
-    }
-
-    const dat = {
-        msg: '',
-        results: null
-    };
+    const dat = { msg: '' };
     try {
         const db = initDB(users_file, 'read');
         const rows = db.prepare('SELECT * FROM users WHERE email = (?)').all(req_body['email']);
         if (rows && rows.length == 1) {
-            console.table(rows);
-            status_code = 200;
+            console.log('> User found.');
+            console.log(req_body);
+            console.log(rows);
+            // get the password and match:
+            if (pHash.verify(req_body['peewee'], rows[0]['hash'])) {
+                status_code = 200;
+            } else {
+                dat.msg = 'Invalid password.';
+                console.log(`> ${dat.msg}`);
+            }
         } else {
-            console.log('> User not found.');
-            console.log(err)
             dat.msg = 'User not found.';
+            console.log(`> ${dat.msg}`);
         }
         db.close();
 
