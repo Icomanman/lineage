@@ -22,7 +22,7 @@ module.exports = () => {
         res.render('tmp', { content: 'home.html', msg_arr: null, is_home: true });
     });
     router.post('/home', (req, res) => {
-        res.send({});
+        res.send(req.body);
     });
 
     // login:

@@ -54,15 +54,148 @@
                   </div>
                </div>
             </div>
+            <div class="row" style="margin-top: 1.6rem;">
+               <div class="ui center aligned grid">
+                  <div class="one item row">
+                     <button id="person-btn" class="ui center floated button">Add Person</button>
+                  </div>
+                  <div class="one item row">
+                     <button id="family-btn" class="ui button">Add Family</button>
+                  </div>
+               </div>
+            </div>
          </div>
          <div class="twelve wide column" id="graph" style="padding-right: 2rem; padding-left: 0;"></div>
       </div>
    </div>
 </main>
 
+<div id="person-modal" class="ui small modal">
+   <div class="header">Person Info</div>
+   <div class="content">
+      <form class="ui form" action="/home" method="POST">
+         <div class="ui error message"></div>
+         <div class="ui success message">
+            <div class="header">Well Done!</div>
+            <p>Person successfully added.</p>
+         </div>
+         <div class="two fields">
+            <div class="field">
+               <label for="first">First Name</label>
+               <input type="text" name="first" placeholder="First Name">
+            </div>
+            <div class="field">
+               <label for="last">Last Name</label>
+               <input type="text" name="last" placeholder="Last Name">
+            </div>
+         </div>
+
+         <div class="equal width fields">
+            <div class="field">
+               <label>Generation</label>
+               <div class="ui selection dropdown" id="gen-dropdown">
+                  <input type="hidden" name="gen">
+                  <i class="dropdown icon"></i>
+                  <div class="default text">Generation</div>
+                  <div class="menu">
+                     <div class="item" data-value="1">1st</div>
+                     <div class="item" data-value="2">2nd</div>
+                     <div class="item" data-value="3">3rd</div>
+                     <div class="item" data-value="4">4th</div>
+                     <div class="item" data-value="5">5th</div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="field">
+               <label for="day">Date of Birth</label>
+               <input type="date" name="day">
+            </div>
+            <div class="field">
+               <label>Gender</label>
+               <div class="ui selection dropdown" id="gender-dropdown">
+                  <input type="hidden" name="gender">
+                  <i class="dropdown icon"></i>
+                  <div class="default text">Gender</div>
+                  <div class="menu">
+                     <div class="item" data-value="male">Male</div>
+                     <div class="item" data-value="female">Female</div>
+                     <div class="item" data-value="other">Other</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="actions">
+            <button class="ui button" type="submit">Add</button>
+            <div class="ui cancel button">Cancel</div>
+         </div>
+      </form>
+   </div>
+</div>
+
+<div id="family-modal" class="ui small modal">
+   <div class="header">Add a family</div>
+   <div class="scrolling content">
+      <p>Very long content goes here</p>
+   </div>
+</div>
+
 <script>
    jQuery('#settings').bind('click', () => {
       jQuery('.ui.sidebar').sidebar('toggle');
-   })
+      // TODO: fix dimmer
+      // if (jQuery('body').hasClass('pushable')) jQuery('body').removeClass('pushable');
+   });
+   jQuery('#gender-dropdown').dropdown();
+   jQuery('#gen-dropdown').dropdown();
+
+   jQuery('#person-btn').bind('click', () => {
+      jQuery('#person-modal').modal('toggle');
+   });
+
+   jQuery('#family-btn').bind('click', () => {
+      jQuery('#family-modal').modal('toggle');
+   });
+
+   document.onreadystatechange = () => {
+      if (document.readyState === 'interactive') {
+         const fields = {
+            firstname: {
+               identifier: 'first',
+               rules: [{ type: 'regExp[/^[A-Za-z ]+$/]', prompt: 'First Name should be letters only' }]
+            },
+            lastname: {
+               identifier: 'last',
+               rules: [{ type: "regExp[/^[A-Za-z ]+$/]", prompt: 'Last Name should be letters only' }]
+            },
+            date: {
+               identifier: 'day',
+               rules: [{ type: 'empty', prompt: 'Please enter date of birth' }]
+            },
+            gender: {
+               identifier: 'gender',
+               rules: [{ type: 'empty', prompt: 'Please enter gender' }]
+            },
+            generation: {
+               identifier: 'gen',
+               rules: [{ type: 'empty', prompt: 'Generation should not be empty' }]
+            }
+         };
+
+         jQuery('.ui.form').form({
+            on: 'blur',
+            fields,
+            onFailure: () => false,
+            onSuccess: () => {
+               setTimeout(() => {
+                  jQuery('.success.message').transition('fade right');
+               }, 500);
+               return true;
+            }
+         });
+      }
+   };
+
 </script>
 <script src="/dist/app.js"></script>

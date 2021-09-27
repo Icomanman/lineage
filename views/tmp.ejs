@@ -44,7 +44,6 @@
             </section>
             <% } %>
    </nav>
-
    <% if (msg_arr) { %>
       <div class="ui centered grid" style="margin-top: 5%;">
          <div class="ui error message">
@@ -58,9 +57,7 @@
          </div>
       </div>
       <% } %>
-
          <%- include(content, { misc: locals.misc ? locals.misc : null }) %>
-
             <footer class="ui centered grid">
                <div class="row" style="margin-top: 0px !important; margin-bottom: 0px !important;">
                   <div class="ui eight item text menu">
