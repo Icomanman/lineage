@@ -73,7 +73,7 @@
 <div id="person-modal" class="ui small modal">
    <div class="header">Person Info</div>
    <div class="content">
-      <form class="ui form" action="/home" method="POST">
+      <form id="person-form" class="ui form" action="/home" method="POST">
          <div class="ui error message"></div>
          <div class="ui success message">
             <div class="header">Well Done!</div>
@@ -136,8 +136,28 @@
 
 <div id="family-modal" class="ui small modal">
    <div class="header">Add a family</div>
-   <div class="scrolling content">
-      <p>Very long content goes here</p>
+   <div class="content">
+      <form id="family-form" class="ui form" action="/home" method="POST">
+         <div class="ui error message"></div>
+         <div class="ui success message">
+            <div class="header">Well Done!</div>
+            <p>Family successfully added.</p>
+         </div>
+         <div class="two fields">
+            <div class="field">
+               <label for="first">Family Name</label>
+               <input type="text" name="name" placeholder="Family Name">
+            </div>
+            <div class="field">
+               <label for="last">Head</label>
+               <input type="text" name="head" placeholder="Name of the Head of the Family">
+            </div>
+         </div>
+         <div class="actions">
+            <button class="ui button" type="submit">Add</button>
+            <div class="ui cancel button">Cancel</div>
+         </div>
+      </form </div>
    </div>
 </div>
 
@@ -160,7 +180,7 @@
 
    document.onreadystatechange = () => {
       if (document.readyState === 'interactive') {
-         const fields = {
+         const person = {
             firstname: {
                identifier: 'first',
                rules: [{ type: 'regExp[/^[A-Za-z ]+$/]', prompt: 'First Name should be letters only' }]
@@ -182,18 +202,32 @@
                rules: [{ type: 'empty', prompt: 'Generation should not be empty' }]
             }
          };
-
-         jQuery('.ui.form').form({
-            on: 'blur',
-            fields,
-            onFailure: () => false,
-            onSuccess: () => {
-               setTimeout(() => {
-                  jQuery('.success.message').transition('fade right');
-               }, 500);
-               return true;
+         const family = {
+            name: {
+               identifier: 'name',
+               rules: [{ type: 'regExp[/^[A-Za-z ]+$/]', prompt: 'Family Name should be letters only' }]
+            },
+            head: {
+               identifier: 'head',
+               rules: [{ type: "regExp[/^[A-Za-z ]+$/]", prompt: 'Head Name should be letters only' }]
             }
-         });
+         };
+         function formValidations(form_id, form_fields) {
+            jQuery(`#${form_id}-form`).form({
+               on: 'blur',
+               fields: form_fields,
+               onFailure: () => false,
+               onSuccess: () => {
+                  setTimeout(() => {
+                     jQuery('.success.message').transition('fade right');
+                  }, 500);
+                  return true;
+               }
+            });
+         }
+
+         formValidations('person', person);
+         formValidations('family', family);
       }
    };
 
