@@ -44,7 +44,20 @@ function validations(request = 'login') {
         check('day').trim().notEmpty().escape().withMessage('Date cannot be empty'),
         check('gender').trim().notEmpty().escape().withMessage('Gender cannot be empty'),
     ];
-    return request === 'login' ? login : registration;
+    const family = [
+        check('name').trim().isLength({ min: 2 }).isAlpha().escape().withMessage('Family Name should be letters only'),
+        check('head').trim().isLength({ min: 2 }).isAlpha().escape().withMessage('Head should be letters only'),
+    ];
+    const person = [
+        check('first').trim().isLength({ min: 2 }).isAlpha().escape().withMessage('First Name should be letters only'),
+        check('last').trim().isLength({ min: 2 }).isAlpha().escape().withMessage('Last Name should be letters only'),
+        check('day').trim().notEmpty().escape().withMessage('Date cannot be empty'),
+        check('gender').trim().notEmpty().escape().withMessage('Gender cannot be empty'),
+        check('gen').trim().notEmpty().isInt({ min: 1, max: 5 }).escape().withMessage('Generation invalid'),
+    ];
+
+    const checkers = { login, registration, family, person };
+    return checkers[request];
 };
 
 const loginUser = req_body => {
@@ -113,8 +126,8 @@ const registerUser = req_body => {
     return { status_code, dat };
 };
 
-const pushData = () => {
-
+const pushData = (req_obj, into = '') => {
+    // process to database: TODO
 };
 
 const pullData = () => {

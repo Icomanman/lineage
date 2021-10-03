@@ -7,6 +7,7 @@ const { validationResult } = require('express-validator');
 const { json } = require('express');
 
 const { loginUser, registerUser, validations } = require(`${global_path}/src/utils.js`);
+const { pullData, pushData } = require(`${global_path}/src/utils.js`);
 
 /* Instantiate middleware in 'router'. Note that 'body-parser' is depracated: 19 Sep 2021
 The Request object body can now be parsed directly via express via the below: */
@@ -22,7 +23,22 @@ module.exports = () => {
         res.render('tmp', { content: 'home.html', msg_arr: null, is_home: true });
     });
     router.post('/home', (req, res) => {
-        res.send(req.body);
+        try {
+            const err_obj = validationResult(req);
+            if (err_obj.isEmpty()) {
+                req.body.head ? pushData(req, 'head') : pushData(req, 'family');
+                setTimeout(() => {
+                    res.redirect('/home');
+                    // res.render('tmp', { content: 'home.html', msg_arr: null, is_home: true });
+                }, 750);
+            } else {
+                console.log(err_obj.array());
+                res.render('tmp', { content: '404.html', msg_arr: null });
+            }
+        } catch (err) {
+            console.log(err);
+            res.render('tmp', { content: '404.html', msg_arr: null });
+        }
     });
 
     // login:

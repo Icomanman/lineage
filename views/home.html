@@ -179,6 +179,12 @@
    });
 
    document.onreadystatechange = () => {
+      function redirectHome() {
+         setTimeout(() => {
+            window.location.href = '/home';
+         }, 750);
+      }
+
       if (document.readyState === 'interactive') {
          const person = {
             firstname: {
@@ -214,13 +220,15 @@
          };
          function formValidations(form_id, form_fields) {
             jQuery(`#${form_id}-form`).form({
-               on: 'blur',
+               on: 'submit',
                fields: form_fields,
                onFailure: () => false,
                onSuccess: () => {
                   setTimeout(() => {
                      jQuery('.success.message').transition('fade right');
-                  }, 500);
+                     jQuery(`#${form_id}-form`).form('clear');
+                     redirectHome();
+                  }, 1000);
                   return true;
                }
             });
