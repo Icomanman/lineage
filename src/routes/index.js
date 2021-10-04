@@ -26,7 +26,7 @@ module.exports = () => {
         try {
             const err_obj = validationResult(req);
             if (err_obj.isEmpty()) {
-                req.body.head ? pushData(req, 'head') : pushData(req, 'family');
+                req.body.head ? pushData(req, 'head') : pushData(req, 'person');
                 setTimeout(() => {
                     res.redirect('/home');
                     // res.render('tmp', { content: 'home.html', msg_arr: null, is_home: true });
@@ -92,6 +92,22 @@ module.exports = () => {
             console.log(err);
             res.redirect('/');
         }
+    });
+
+    // Graph endpoints:
+    router.post('/graph', (req, res) => {
+        // TODO
+    });
+
+    router.post('/head', (req, res) => {
+        // TODO
+        console.log('hit');
+        console.log(req.body);
+        res.send('ok');
+    });
+
+    router.post('/person', (req, res) => {
+        // TODO
     });
     return router;
 };

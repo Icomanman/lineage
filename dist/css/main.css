@@ -11,6 +11,18 @@
    margin-bottom: 2%;
 }
 
+.emphasis {
+   font-weight: 700;
+}
+
+.emphasis:hover {
+   cursor: pointer;
+}
+
+.nodeText:hover {
+   cursor: pointer;
+}
+
 #profile-content {
    min-width: 75%;
    text-align: center;

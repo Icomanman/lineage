@@ -130,10 +130,10 @@ const pushData = (req_obj, into = '') => {
     // process to database: TODO
 };
 
-const pullData = () => {
+const pullData = dat => {
 
 };
 
 module.exports = {
-    loginUser, registerUser, validations
+    loginUser, pushData, registerUser, validations
 }

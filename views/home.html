@@ -218,6 +218,7 @@
                rules: [{ type: "regExp[/^[A-Za-z ]+$/]", prompt: 'Head Name should be letters only' }]
             }
          };
+
          function formValidations(form_id, form_fields) {
             jQuery(`#${form_id}-form`).form({
                on: 'submit',
@@ -227,12 +228,23 @@
                   setTimeout(() => {
                      jQuery('.success.message').transition('fade right');
                      jQuery(`#${form_id}-form`).form('clear');
-                     redirectHome();
+                     // redirectHome();
+
                   }, 1000);
-                  return true;
+                  return false;
                }
             });
          }
+
+         jQuery('#family-form [type="submit"]').bind('click', () => {
+            const form_dat = [];
+            jQuery('#family-form input').each(
+               function () {
+                  form_dat.push(jQuery(this).val());
+               });
+            console.log(form_dat);
+            cl.dbRequest(form_dat, 'head');
+         });
 
          formValidations('person', person);
          formValidations('family', family);
@@ -240,4 +252,5 @@
    };
 
 </script>
+<script src="/js/main.js"></script>
 <script src="/dist/app.js"></script>

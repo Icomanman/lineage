@@ -2,7 +2,27 @@
 const cl = (function () {
     const f = {};
     const g = {};
-    return { f, g }
+
+    f.dbRequest = (dat, into) => {
+        console.log(dat);
+        if (into) {
+            jQuery.ajax({
+                type: "POST",
+                url: `http://localhost:8080/${into}`, // family or person
+                cache: false,
+                data: dat,
+                dataType: 'json',
+                success: function (results_data) {
+                    console.log(results_data);
+                },
+                error: function () {
+                }
+            });
+        }
+    }
+
+    f.globals = g;
+    return f;
 })();
 
 // Index Page. Alternative to DOMContentLoaded event
