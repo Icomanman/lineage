@@ -1,8 +1,4 @@
 
-jQuery(document).bind('contextmenu', function (e) {
-    return false;
-});
-
 let treeData = [{
     "name": "Niclas Superlongsurname",
     "class": "man",
