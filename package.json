@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/Icomanman/lineage#readme",
   "dependencies": {
-    "better-sqlite3": "^7.4.3",
+    "better-sqlite3": "^7.4.5",
     "cookie-parser": "^1.4.5",
     "d3-dtree": "^2.4.1",
     "ejs": "^3.1.6",
